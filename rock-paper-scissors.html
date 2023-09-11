@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Rock Paper Scissors</title>
+
+</head>
+
+<body>
+    <p>Game: Rock Paper Scissors</p>
+    <!-- <img ✊ width="500" height="600"> -->
+    <button>Rock</button>
+    <!-- <img ✌️ width="500" height="600"> -->
+    <button>Paper</button>
+    <!-- <img 🖐 width="500" height="600"> -->
+    <button>Scissors</button>
+    <script>
+
+        // user selected button will be console.log
+        let buttonlist = document.querySelectorAll('button');
+        buttonlist.forEach(function (btn) {
+            btn.addEventListener('click', () => {
+                let userMove = btn.innerHTML.toLowerCase();
+                computerGame(userMove);
+            })
+        })
+
+        //this random function will generate the randam decimal value from 0 to 1 
+        const rock = 1 / 3;
+        const paper = 2 / 3;
+        const scissors = 1;
+
+        // computer will selected value
+        function computerGame(userMove) {
+            const randomNum = Math.random();
+            let computerMove = '';
+            if (randomNum >= 0 && randomNum < rock) {
+                computerMove = 'rock';
+            } else if (randomNum >= rock && randomNum < paper) {
+                computerMove = 'paper';
+            } else if (randomNum >= paper && randomNum < scissors) {
+                computerMove = 'scissors';
+            };
+            console.log(`UserSelected: ${userMove}`);
+            console.log(`ComputerSelected: ${computerMove}`);
+            gameResults(userMove, computerMove);
+        }
+
+        //game result validation on user and computer moves
+        function gameResults(userMove, computerMove) {
+            let result = '';
+            if (userMove === 'rock' && computerMove === 'scissors' || userMove === 'paper' && computerMove === 'rock' || userMove === 'scissors' && computerMove === 'paper') {
+                result = 'You Won';
+            } else if (userMove === 'rock' && computerMove === 'paper' || userMove === 'paper' && computerMove === 'scissors' || userMove === 'scissors' && computerMove === 'rock') {
+                result = 'You Lost';
+            } else if (userMove === 'rock' && computerMove === 'rock' || userMove === 'paper' && computerMove === 'paper' || userMove === 'scissors' && computerMove === 'scissors') {
+                result = 'Draw';
+            }
+            alert(`UserSelected: ${userMove} ComputerSelected: ${computerMove}, Results: ${result}`);
+        }
+
+
+    </script>
+</body>
+
+</html>
